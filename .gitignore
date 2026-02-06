@@ -1,3 +1,7 @@
 instance/picopico.db
 __pycache__/
 .env
+.DS_Store
+instance/picopico.db
+__pycache__/
+.env
