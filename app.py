@@ -14,8 +14,8 @@ print("APP.PY SE ESTA EJECUTANDO")
 # -------------------------
 
 app = Flask(__name__)
-app.secret_key = "picopico-secret"
-
+import os
+app.secret_key = os.environ.get("SECRET_KEY", "dev-secret")
 basedir = os.path.abspath(os.path.dirname(__file__))
 instance_dir = os.path.join(basedir, "instance")
 os.makedirs(instance_dir, exist_ok=True)
@@ -341,4 +341,4 @@ def logout():
 # -------------------------
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001, debug=True)
+    app.run()
