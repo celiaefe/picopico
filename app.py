@@ -339,6 +339,18 @@ def logout():
 # -------------------------
 # ARRANQUE
 # -------------------------
+with app.app_context():
+    db.create_all()
 
+    # Crear usuario admin si no existe
+    if not Usuario.query.filter_by(username="admin").first():
+        admin = Usuario(
+            username="admin",
+            password="admin123",
+            is_admin=True
+        )
+        db.session.add(admin)
+        db.session.commit()
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
